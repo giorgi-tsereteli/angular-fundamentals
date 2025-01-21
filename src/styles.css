@@ -72,7 +72,8 @@ button {
 }
 
 a.button {
-  font-size: 15px;
+  font-size: 18px;
+  font-weight: 700;
   padding: 15px 25px;
   background-color: #5cadd2;
   color: #fff;

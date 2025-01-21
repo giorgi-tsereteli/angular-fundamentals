@@ -1,9 +1,9 @@
 export interface IProduct {
-  id: string;
+  id: number;
   description: string;
   name: string;
   imageName: string;
   category: string;
   price: number;
-  discount: number; 
+  discount: number;
 }

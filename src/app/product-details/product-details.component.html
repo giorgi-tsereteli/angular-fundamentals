@@ -1,0 +1,22 @@
+<!-- each time, loop picks product which is entire object with all data -->
+<div class="product">
+  <div class="product-details">
+    <img [src]="getimageUrl(product)" [alt]="product.name" />
+    <div class="product-info">
+      <div class="name">{{ product.name }}</div>
+      <div class="description">{{ product.description }}</div>
+      <div class="category">Part Type: {{ product.category }}</div>
+    </div>
+  </div>
+  <div class="price">
+    <!-- class.classname, ngClass and ngStyle deal with css and some condition -->
+    <div [ngClass]="{ strickethrough: product.discount > 0 }">
+      {{ product.price | currency : "USD" }}
+    </div>
+    <div *ngIf="product.discount > 0" class="discount">
+      {{ product.price * (1 - product.discount) | currency : "GBP" }}
+    </div>
+    <!-- component listens to click event and triggers emit of data to parent component -->
+    <button class="cta" (click)="buyButtonClicked()">Buy</button>
+  </div>
+</div>
