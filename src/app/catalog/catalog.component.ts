@@ -17,23 +17,31 @@ export class CatalogComponent {
     private cartSvc: CartService,
     private productSvc: ProductService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute // to filter page of products
   ) { }
 
   ngOnInit() {
     this.productSvc.getProducts().subscribe((products) => {
       this.products = products;
     });
-    this.route.queryParams.subscribe((params) => {
-      this.filter = params['filter'] ?? '';
-    })
+    // Subscribe to route parameters
+    this.route.params.subscribe((params) => {
+      // Update the filter property with the 'filter' parameter from the route
+      this.filter = params['filter'] ?? ''
+      // 'subscribe' listens for changes in the route parameters and executes the callback function when they change
+    });
   }
 
   addToCart(product: IProduct) {
     this.cartSvc.add(product);
-    this.router.navigate(['/cart']);
+    this.router.navigate(['/cart']); // conditional navigation
   }
 
+  /**
+   * Filters the products based on the selected category.
+   * If no category is selected (filter is an empty string), it returns all products.
+   * Otherwise, it returns only the products that match the selected category.
+   */
   getFilteredProducts() {
     return this.filter === ''
       ? this.products
