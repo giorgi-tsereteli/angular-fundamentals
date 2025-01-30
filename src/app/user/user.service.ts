@@ -21,7 +21,7 @@ export class UserService {
   signIn(credentials: IUserCredentials): Observable<IUser> {
     return this.http
       .post<IUser>('/api/sign-in', credentials)
-      .pipe(map((user: IUser) => {
+      .pipe(map((user: IUser) => { // caching and emitting the user. 2:21 in Submitting a template driven form
         this.user.next(user);
         return user;
       }));
