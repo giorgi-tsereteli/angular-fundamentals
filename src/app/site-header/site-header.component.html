@@ -5,10 +5,13 @@
     <a routerLink="/catalog" routerLinkActive="active">Catalog</a>
     <div class="cart">
       <a routerLink="/cart" routerLinkActive="active">Cart</a>
+      <!-- <a [routerLink]="['user', user.id]"> Example of dynamic url for {{user.id}} </a> -->
+      <!-- <a routerLink="{{'/user/' + user.id}}"> Example with string interpolation </a> -->
+       <!-- routerLinkActive makes .active css style to be applied when such route is active -->
     </div>
   </div>
   <div class="right">
-    <a routerLink="/sign-in" routerLinkActive="active">Sign In</a>
-    <a href="" class="cta">Register</a>
+    <a routerLink="">Sign In</a>
+    <a routerLink="" class="cta">Register</a>
   </div>
 </div>

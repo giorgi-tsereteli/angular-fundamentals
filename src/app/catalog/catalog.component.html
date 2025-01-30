@@ -1,10 +1,15 @@
 <div class="container">
   <div class="filters">
-    <a routerLink="/catalog" [queryParams]="{filter: 'Heads'}" routerLinkActive="active" class="button">Heads</a>
-    <a routerLink="/catalog" [queryParams]="{filter: 'Arms'}" routerLinkActive="active" class="button">Arms</a>
-    <a routerLink="/catalog" [queryParams]="{filter: 'Torsos'}" routerLinkActive="active" class="button">Torsos</a>
-    <a routerLink="/catalog" [queryParams]="{filter: 'Bases'}" routerLinkActive="active" class="button">Bases</a>
-    <a routerLink="/catalog" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="button">All</a>
+    <!-- Initially, click action was setting filter to a string value and later was used in the function to match the category -->
+    <!-- Currently its using router links and function filters products depending on url parameters like /Heads -->
+    <!-- <a class="button" (click)="filter = 'Heads'">Heads</a> -->
+    <a routerLink="/catalog" [queryParams]="{filter:'Heads'}" routerLinkActive="active" class="button">Heads</a>
+    <a routerLink="/catalog" [queryParams]="{filter:'Arms'}" routerLinkActive="active" class="button">Arms</a>
+    <a routerLink="/catalog" [queryParams]="{filter:'Torsos'}" routerLinkActive="active" class="button">Torsos</a>
+    <a routerLink="/catalog" [queryParams]="{filter:'Bases'}" routerLinkActive="active" class="button">Bases</a>
+    <a routerLink="/catalog" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="button">All</a>
+    <!-- [routerLinkActiveOptions]="{exact:true}" helps to exactly match the url. -->
+    <!-- ALL btn was always highlithting bcz its link was always matching all other urls -->
   </div>
 
   <ul class="products">
