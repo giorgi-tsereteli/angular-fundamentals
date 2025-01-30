@@ -25,12 +25,12 @@ export class CatalogComponent {
     this.productSvc.getProducts().subscribe((products) => {
       this.products = products;
     });
-    // Subscribe to route parameters
-    // if you have a URL like http://example.com/products/123, 123 is a route parameter. 
+    // Subscribe to query parameters
+    // if you have a URL like http://example.com/products?filter=123, 123 is a query parameter. 
     // In this case, products is the route, and 123 is the parameter that can be used to fetch or display specific data related to that product.
-    this.route.params.subscribe((availableParams) => {
-      // 'subscribe' listens for changes in the route parameters and executes the callback function when they change
-      // Update the filter property with the 'filter' parameter from the route
+    this.route.queryParams.subscribe((availableParams) => {
+      // 'subscribe' listens for changes in the query parameters and executes the callback function when they change
+      // Update the filter property with the 'filter' query parameter from the route
       this.filter = availableParams['filter'] ?? ''
       console.log(`Current filter value: ${this.filter}`);
     });
