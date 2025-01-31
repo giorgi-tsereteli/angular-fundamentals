@@ -11,12 +11,16 @@ import { Router } from '@angular/router';
 export class SignInComponent {
   credentials: IUserCredentials = { email: '', password: '' };
 
+  signInError: boolean = false;
+
   constructor(private userService: UserService, private router: Router) {}
 
   signIn() {
+    this.signInError = false; // reset error state each time they try to sign in
     this.userService.signIn(this.credentials).subscribe({
-      // why user returns observable
-      next: () => this.router.navigate(['/catalog'])
-    }); 
+      // why user returns observable??
+      next: () => this.router.navigate(['/catalog']),
+      error: () => (this.signInError = true), // this boolean value determines if the error message is displayed in html
+    });
   }
 }

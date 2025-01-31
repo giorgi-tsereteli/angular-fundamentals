@@ -1,15 +1,24 @@
 <div class="container">
-  <form class="form" (ngSubmit)="signIn()">
+  <!-- #signInForm="ngForm" is a template var which gets entire value of ngForm directive -->
+  <form #signInForm="ngForm" class="form" (ngSubmit)="signIn()">
     <img class="logo" src="/assets/images/logo.png" />
     <div class="sign-in">Sign In</div>
     <div class="sub-text">to acquire awesome bots</div>
     <!-- when using ngmodel for two way binding, name attribute should be present -->
-    <input name="email" [(ngModel)]="credentials.email" placeholder="Email Address" type="text" />
-    <input name="password" [(ngModel)]="credentials.password" placeholder="Password" type="password" />
+     <!-- email required are just normal html attributes -->
+    <input name="email" required email #email="ngModel" [(ngModel)]="credentials.email" placeholder="Email Address" type="text" />
+    <!-- email here is template variable and error/tocuched are the properties -->
+     <!-- errors object contains values which can be usde to specify what type error you need to check -->
+    <em class="error" *ngIf="email.errors?.['required'] && email.touched">Email is required</em> 
+    <em class="error" *ngIf="email.errors?.['email'] && email.touched">Valid email is required</em> 
+    <input name="password" required #password="ngModel" [(ngModel)]="credentials.password" placeholder="Password" type="password" />
+    <em class="error" *ngIf="password.invalid && password.touched">Password is required</em>
     <div class="buttons">
-      <button type="submit" class="button cta">
+      <!-- attribute binding for html disabled = options from the ngForm. If it evaluates to true, disabled attribute will be used -->
+      <button type="submit" [disabled]="signInForm.form.invalid" class="button cta"> <!-- attribute binding for html disabled = options from the ngForm -->
         Sign In
       </button>
     </div>
+    <em class="signInError" *ngIf="signInError">Sign in failed</em>
   </form>
 </div>
