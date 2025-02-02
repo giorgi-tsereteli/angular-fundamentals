@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 })
 export class SignInComponent {
   credentials: IUserCredentials = { email: '', password: '' };
-
   signInError: boolean = false;
 
   constructor(private userService: UserService, private router: Router) {}
